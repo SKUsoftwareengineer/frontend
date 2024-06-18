@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "./Button";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Body = styled.div`
@@ -23,6 +23,11 @@ const HeaderButton = styled(Button)`
 function Header() {
   const [isMain, setIsMain] = useState<boolean>(false);
   const loc = useLocation();
+  const nav = useNavigate();
+
+  const onClick = () => {
+    nav(-1);
+  };
 
   useEffect(() => {
     if (loc.pathname === "/") setIsMain(true);
@@ -31,7 +36,7 @@ function Header() {
 
   return (
     <Body>
-      {!isMain && <HeaderButton>{"< 이전"}</HeaderButton>}
+      {!isMain && <HeaderButton onClick={onClick}>{"< 이전"}</HeaderButton>}
       <Outlet />
     </Body>
   );
