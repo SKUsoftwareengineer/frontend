@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Main, Lang, Stylist, DateTime } from "@pages";
+import { Main, Lang, Stylist, DateTime, ServicePage, Confirm } from "@pages";
 import { Header } from "@components";
 import styled from "styled-components";
 
@@ -25,6 +25,8 @@ function App() {
         <Route path="lang" element={<Lang />} />
         <Route path="stylist" element={<Stylist />} />
         <Route path="date" element={<DateTime />} />
+        <Route path="service" element={<ServicePage />} />
+        <Route path="confirm" element={<Confirm />} />
       </Routes>
     </Basic>
   );
