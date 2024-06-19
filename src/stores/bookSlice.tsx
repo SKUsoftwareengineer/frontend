@@ -3,15 +3,15 @@ import { StylistInfo } from "@entities/StylistInfo";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface initialStateType {
-  stylistinfo?: StylistInfo;
-  service?: Service;
-  date?: Date;
+  stylistinfo: StylistInfo;
+  service: Service;
+  date: Date;
 }
 
 const initialState: initialStateType = {
-  stylistinfo: undefined,
-  service: undefined,
-  date: undefined,
+  stylistinfo: new StylistInfo({ kor: "", eng: "" }),
+  service: new Service({ kor: "", eng: "" }, 0, { kor: "", eng: "" }),
+  date: new Date(),
 };
 
 const bookSlice = createSlice({
