@@ -28,7 +28,7 @@ function Stylist() {
       <Body>
         <Boxes>
           {dummies.map((e, i) => (
-            <StylistBox info={e} key={i} />
+            <StylistBox info={e} key={i} activate={true} />
           ))}
         </Boxes>
       </Body>

@@ -8,7 +8,11 @@ interface ImageProps {
   src: string;
 }
 
-const Body = styled.div`
+interface BodyProps {
+  activate?: boolean;
+}
+
+const Body = styled.div<BodyProps>`
   width: 240px;
   height: 130px;
 
@@ -20,7 +24,7 @@ const Body = styled.div`
   border-radius: 10px;
   margin: 10px;
 
-  cursor: pointer;
+  cursor: ${(props) => (props.activate ? "pointer" : "default")};
 `;
 
 const Image = styled.div<ImageProps>`
@@ -43,18 +47,18 @@ const Typo = styled.div`
   font-weight: bold;
 `;
 
-function StylistBox({ info }: { info: StylistInfo }) {
+function StylistBox({ info, activate }: { info: StylistInfo; activate?: boolean }) {
   const lang = useAppSelector((state) => state.lang.selected);
   const dispatch = useAppDispatch();
   const nav = useNavigate();
 
   const onClcik = () => {
     dispatch(bookSlice.actions.setStylist(info));
-    nav("../service");
+    nav("../date");
   };
 
   return (
-    <Body onClick={onClcik}>
+    <Body activate={activate} onClick={activate ? onClcik : undefined}>
       <Image src={info.image} />
       <Typo>{info.name[lang]}</Typo>
     </Body>
