@@ -1,16 +1,22 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Body, Logo } from "@components";
+import Calendar from "react-calendar";
+import texts from "@assets/json/date.json";
+import { Body, Button, Logo } from "@components";
 import { StylistBox } from "@pages/stylists/stylistBox";
 import { useAppSelector } from "@stores/store";
 import { TimeButton } from "./TimeBtn";
+import { useNavigate } from "react-router-dom";
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Contents = styled.div`
   display: flex;
   flex-direction: row;
 
   width: 525px;
-  height: 500px;
+  margin: 10px;
 
   position: relative;
   overflow-y: auto;
@@ -21,7 +27,8 @@ const Contents = styled.div`
 
 const Buttons = styled.div`
   width: 180px;
-  height: 310px;
+  margin: 10px;
+  height: 300px;
   display: flex;
   flex-wrap: wrap;
   margin-left: 15px;
@@ -36,7 +43,10 @@ const DateTimeBody = styled(Body)`
 
 function DateTime() {
   const bookInfo = useAppSelector((e) => e.book);
+  const lang = useAppSelector((e) => e.lang.selected);
+  const nav = useNavigate();
   const [time, setTime] = useState<number>(20);
+  const [date, setDate] = useState<Value>(new Date());
 
   const arr = Array.from({ length: 12 }, (_, i) => ({
     time: `${i + 9}:00`,
@@ -47,6 +57,10 @@ function DateTime() {
     setTime(i);
   };
 
+  const onSubmitClick = () => {
+    nav("../service");
+  };
+
   return (
     <Body>
       <Logo />
@@ -54,6 +68,15 @@ function DateTime() {
         <DateTimeBody>
           <StylistBox info={bookInfo.stylistinfo} activate={false} />
           <Contents>
+            <Calendar
+              onChange={setDate}
+              value={date}
+              calendarType="gregory"
+              view="month"
+              prev2Label={null}
+              next2Label={null}
+              showNeighboringMonth={false}
+            />
             <Buttons>
               {arr.map((e, i) => (
                 <TimeButton selected={time === i} activated={e.activated} onClick={onClick(i)} key={i}>
@@ -62,6 +85,7 @@ function DateTime() {
               ))}
             </Buttons>
           </Contents>
+          <Button onClick={onSubmitClick}>{texts[lang].submitBtn}</Button>
         </DateTimeBody>
       </Body>
     </Body>
