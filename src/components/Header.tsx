@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Button } from "./Button";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "@stores/store";
+import texts from "@assets/json/header.json";
 
 const Body = styled.div`
   display: flex;
@@ -22,12 +24,10 @@ const HeaderButton = styled(Button)`
 
 function Header() {
   const [isMain, setIsMain] = useState<boolean>(false);
+  const lang = useAppSelector((state) => state.lang.selected);
   const loc = useLocation();
   const nav = useNavigate();
-
-  const onClick = () => {
-    nav(-1);
-  };
+  const onClick = () => nav(-1);
 
   useEffect(() => {
     if (loc.pathname === "/") setIsMain(true);
@@ -36,7 +36,7 @@ function Header() {
 
   return (
     <Body>
-      {!isMain && <HeaderButton onClick={onClick}>{"< 이전"}</HeaderButton>}
+      {!isMain && <HeaderButton onClick={onClick}>{texts[lang].backBtn}</HeaderButton>}
       <Outlet />
     </Body>
   );
