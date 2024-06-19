@@ -1,8 +1,10 @@
+import { LangString } from "./LangString";
+
 class StylistInfo {
-  name: string;
+  name: LangString;
   image: string;
 
-  constructor(name: string, image?: string) {
+  constructor(name: LangString, image?: string) {
     this.name = name;
     this.image =
       image ||

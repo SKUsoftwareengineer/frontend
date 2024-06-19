@@ -1,10 +1,14 @@
-class Service {
-  name: string;
-  price: number;
+import { LangString } from "./LangString";
 
-  constructor(name: string, price: number) {
+class Service {
+  name: LangString;
+  price: number;
+  description: LangString;
+
+  constructor(name: LangString, price: number, description: LangString) {
     this.name = name;
     this.price = price;
+    this.description = description;
   }
 }
 
