@@ -1,4 +1,4 @@
-import { Button, Body } from "@components";
+import { Button, Body, Logo } from "@components";
 import { langSlice } from "@stores/langSlice";
 import { useAppDispatch } from "@stores/store";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,8 @@ function Lang() {
 
   return (
     <Body>
-      <Button margin="20px" onClick={onKorClick}>
+      <Logo />
+      <Button margin="300px 0 20px 0" onClick={onKorClick}>
         한국어
       </Button>
       <Button margin="20px" onClick={onEngClick}>

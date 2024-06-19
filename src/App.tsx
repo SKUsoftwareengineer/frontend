@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Main, Lang } from "@pages";
+import { Main, Lang, Stylist } from "@pages";
 import { Header } from "@components";
 import styled from "styled-components";
 
@@ -23,6 +23,7 @@ function App() {
       <Routes>
         <Route index element={<Main />} />
         <Route path="lang" element={<Lang />} />
+        <Route path="stylist" element={<Stylist />} />
       </Routes>
     </Basic>
   );
