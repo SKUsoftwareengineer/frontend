@@ -12,7 +12,9 @@ function Main() {
       <Link to="lang">
         <Button margin="300px 0 20px 0">{texts[lang].langBtn}</Button>
       </Link>
-      <Button margin="20px">{texts[lang].bookBtn}</Button>
+      <Link to="stylist">
+        <Button margin="20px">{texts[lang].bookBtn}</Button>
+      </Link>
     </Body>
   );
 }
